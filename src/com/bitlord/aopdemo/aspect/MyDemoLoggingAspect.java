@@ -2,6 +2,7 @@ package com.bitlord.aopdemo.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 
@@ -13,9 +14,12 @@ public class MyDemoLoggingAspect {
 	
 	//  let's start with an @Before advice
 	
-	// @Before("execution( public void add*() )")
+
+	@Pointcut("execution(  *  com.bitlord.aopdemo.dao.*.*( .. ) )")
+	private void forDaoPackage() {}
+	
+	
 	 
-	@Before("execution(  *  com.bitlord.aopdemo.dao.*.*( .. ) )")	
 	public void beforeAddAccountAdvice ( )  {
 		
 		// System.out.println("\n======>>>>> Executing @Before advice on addAccount()");
